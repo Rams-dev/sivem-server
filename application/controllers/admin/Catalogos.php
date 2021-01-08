@@ -31,7 +31,7 @@ class Catalogos extends CI_Controller {
 
 	public function obtenerDatosDeCatalogos(){
 		// $datos = $this->MediosModel->obtenerMedios();
-		$espectaculares = $this->EspectacularesModel->obtenerEspectaculares();
+		$espectaculares = $this->EspectacularesModel->obtenerEspectacularesIndex();
 		$vallas_fijas = $this->Vallas_fijasModel->obtenerVallas_fijas();
 		$vallas_moviles = $this->Vallas_movilesModel->obtenerVallas_moviles();
 		// $datos = $espectaculares = $vallas_moviles + $vallas_fijas;
