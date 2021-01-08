@@ -31,5 +31,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/results/
 
 ##exclude imagesMediosao
-application/config
-assets/images/medios
+application/config/*
+assets/images/medios/*
