@@ -12,7 +12,7 @@
 
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="numcontrol"> #Control: </label>
+                        <label for="numcontrol"> Clave master: </label>
                             <input type="text" class="form-control" id="numcontrol" name="numcontrol" value="" >
                     </div>
                 </div>
