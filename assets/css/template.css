@@ -5,6 +5,8 @@
 }
 
 
+
+
 input{
   text-transform: uppercase;
 }
@@ -103,6 +105,8 @@ input{
 
 .table-responsive{
   overflow-x: auto;
+  max-height: 140vh;
+  overflow-y: auto;
 }
 /* ------------------------------------------- */
 

@@ -58,7 +58,7 @@ class Catalogos extends CI_Controller {
 
 		
 			if($id_estado == "" && $municipio == "" && $status == "" && $tipo_medio == "" ){
-				$espectaculares = $this->EspectacularesModel->obtenerEspectaculares();
+				$espectaculares = $this->EspectacularesModel->obtenerEspectacularesIndex();
 				$vallas_fijas = $this->Vallas_fijasModel->obtenerVallas_fijas();
 				$vallas_moviles = $this->Vallas_movilesModel->obtenerVallas_moviles();
 				// var_dump($vallas_moviles);
@@ -90,7 +90,7 @@ class Catalogos extends CI_Controller {
 		// exit;
 		
 		if($estado == "" && $status == "" && $medio == "" && $municipio == ""){
-			$espectaculares = $this->EspectacularesModel->obtenerEspectaculares();
+			$espectaculares = $this->EspectacularesModel->obtenerEspectacularesIndex();
 			$vallas_fijas = $this->Vallas_fijasModel->obtenerVallas_fijas();
 			$vallas_moviles = $this->Vallas_movilesModel->obtenerVallas_moviles();
 
