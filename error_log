@@ -1,0 +1,2 @@
+[08-Jan-2021 12:04:47 America/Mexico_City] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/publihom/sivem.publihome.mx/application/libraries/dompdf/lib/Cpdf.php on line 4912
+[08-Jan-2021 12:05:23 America/Mexico_City] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/publihom/sivem.publihome.mx/application/libraries/dompdf/lib/Cpdf.php on line 4794
