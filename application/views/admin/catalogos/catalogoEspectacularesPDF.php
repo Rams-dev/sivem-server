@@ -150,7 +150,7 @@
     </style>
 </head>
 <body>
-    <!-- <?php var_dump($medios)?> -->
+    <?php var_dump($medios)?>
     <div class="contenedor">
         <div class="centrado">
             <img src ="<?= BASEPATH.'../assets/images/logo_medios.jpg'?>" class="logo_medios_pg1" alt="">
@@ -222,7 +222,7 @@
                 <tr>
                     <td colspan=2><?=$medio['localidad']?> </td>
                     <td><?=$medio['municipio']?></td>
-                    <td><?=$medio['nombre']?></td>
+                    <td><?=$medio['nombre_estado']?></td>
                 </tr>
                 <tr>
                     <th colspan=2>MEDIDAS </th>

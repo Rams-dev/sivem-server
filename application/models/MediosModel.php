@@ -45,7 +45,7 @@ class MediosModel extends CI_model
             // exit;
             $this->db->select("*");
             $this->db->from($tipo_medio);
-            $this->db->select("medios.id, medios.precio as costo_total");
+            $this->db->select("medios.id, medios.precio as precio");
             $this->db->join('medios','medios.id = '.$tipo_medio.'.id_medio');
             if($tipo_medio != "vallas_moviles"){
                 $this->db->select("estados.nombre as nombre_estado");
@@ -404,7 +404,7 @@ class MediosModel extends CI_model
 
 
     public function obtenerMediosOcupadosSinFechadeInicio($unmes){
-        $sql = $this->db->get_where("medios",array("fecha_termino_ocupacion <=" => $unmes));
+        $sql = $this->db->get_where("medios",array("fecha_termino_ocupacion <=" => $unmes, "fecha_termino_ocupacion !=" => "0000-00-00" ));
         return $sql->result_array();
     }
 

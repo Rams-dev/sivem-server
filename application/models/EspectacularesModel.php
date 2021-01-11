@@ -8,8 +8,7 @@ class EspectacularesModel extends CI_model{
 
     
     	public function obtenerEspectacularesIndex(){
-        $this->db->select('medios.id, espectaculares.id as espectacular_id,nocontrol, costo_impresion,costo_instalacion, calle,
-        numero,
+        $this->db->select('medios.id, espectaculares.id as espectacular_id, nocontrol, costo_impresion,costo_instalacion, calle, numero,
         tipo_medio,
         costo_renta,
         colonia,

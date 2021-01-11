@@ -24,6 +24,7 @@ input{
   display: none!important;
 }
 
+
 .navbar-horizontal{  
   display: flex;
   align-items: center;
@@ -105,7 +106,7 @@ input{
 
 .table-responsive{
   overflow-x: auto;
-  max-height: 140vh;
+  height: 140vh !important;
   overflow-y: auto;
 }
 /* ------------------------------------------- */

@@ -18,7 +18,6 @@ class Catalogos extends CI_Controller {
 	{
 
 		if($this->session->userdata('is_logged')){
-		// $data['medios'] = $this->MediosModel->obtenerMedios();
 		$data['estados'] = $this->Models->obtenerEstados();
 		$this->load->view('admin/templates/__head');
 		$this->load->view('admin/templates/__nav');
@@ -44,18 +43,10 @@ class Catalogos extends CI_Controller {
 	public function obtenerMedios(){
 		if($this->session->userdata('is_logged')){
 
-			// $id_estado = $this->input->post();
-			// echo json_encode($id_estado);
-			// exit;
-
-
 			$id_estado = $this->input->post('estado');
 			$status = $this->input->post('status');
 			$tipo_medio = $this->input->post('tipomedio');
 			$municipio = $this->input->post("municipio");
-			//   echo json_encode(array($id_estado, $status,$tipo_medio));
-			//  exit;
-
 		
 			if($id_estado == "" && $municipio == "" && $status == "" && $tipo_medio == "" ){
 				$espectaculares = $this->EspectacularesModel->obtenerEspectacularesIndex();

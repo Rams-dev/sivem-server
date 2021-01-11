@@ -71,18 +71,7 @@
               <th scope="col">Status</th>
             </tr>
           </thead>
-          <tbody id="mediosdata">
-           <!-- <?php foreach($medios  as $medio):?>
-            <tr>
-              <th scope="row"></th>
-              <td><?=$medio['nocontrol']?></td>
-              <td><?=$medio['tipo_medio']?></td>
-              <td><?=$medio['calle'] .', '.$medio['municipio']. ", " .$medio['nombre_estado'] ?></td>
-              <td><?= "$ ".$medio['monto']?></td>
-              <td><?=$medio['status']?></td>
-            </tr>
-           
-            <?php endforeach?>          </tbody>  -->
+          <tbody id="mediosdata"> </tbody>
         </table>
     </div>
 

@@ -70,13 +70,15 @@ class Dashboard extends CI_Controller {
 			// }
 
 			 //obtiene los medios que se dieron de alta como ocupados y terminan dentro de un mes
-			// $mediosOcupados = $this->MediosModel->obtenerMediosOcupadosSinFechadeInicio($UnMes);
-			// if(count($mediosOcupados)>0){
-			// 	//modifica el estatus de ocupado a proximo
-			// 	for($m=0; $m<count($mediosOcupados); $m++){
-			// 		$this->MediosModel->cambiarStatusOcupadoAProximo($mediosOcupados[$m]["id"]);
-			// 	}
-			// }
+			$mediosOcupados = $this->MediosModel->obtenerMediosOcupadosSinFechadeInicio($UnMes);
+			// var_dump($mediosOcupados);
+			// var_dump($UnMes);
+			if(count($mediosOcupados)>0){
+			 	//modifica el estatus de ocupado a proximo
+			 	for($m=0; $m<count($mediosOcupados); $m++){
+			 		$this->MediosModel->cambiarStatusOcupadoAProximo($mediosOcupados[$m]["id"]);
+			 	}
+			 }
 			
 			$mediosProximos = $this->MediosModel->obtenerMediosProximosSinFechadeInicio($ayer);
 			 if(count($mediosProximos)>0){
@@ -125,8 +127,7 @@ class Dashboard extends CI_Controller {
 		$vallas_fijas = $this->Vallas_fijasModel->vallasQueTerminaraSucontratoDentroDeUnMes($UnMes);
 		$medios = array_merge($espectaculares,$vallas_fijas);
 		if(count($medios)>0){
-			echo json_encode(array("medios"=> $medios, "total"=> count($medios)));
-			
+			echo json_encode(array("medios"=> $medios, "total"=> count($medios)));		
 		}
 	}
 
