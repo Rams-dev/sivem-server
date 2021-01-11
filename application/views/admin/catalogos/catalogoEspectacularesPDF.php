@@ -150,7 +150,7 @@
     </style>
 </head>
 <body>
-    <?php var_dump($medios)?>
+    <!-- <?php var_dump($medios)?> -->
     <div class="contenedor">
         <div class="centrado">
             <img src ="<?= BASEPATH.'../assets/images/logo_medios.jpg'?>" class="logo_medios_pg1" alt="">
