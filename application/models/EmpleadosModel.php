@@ -55,6 +55,19 @@ class EmpleadosModel extends CI_model{
         
     }
 
+    public function obtenerEmpleadosVendedores(){
+        $this->db->where("tipo", "1");
+        $this->db->or_where("tipo", "2");
+        $this->db->where("acceso", "si");
+        $this->db->where("contrasena !=", "");
+        $sql = $this->db->get("usuarios");
+        if($sql){
+            return $sql->result_array();
+        }else{
+            return false;
+        }
+    }
+
     function editarEmpleado($id,$nombre,$apellidos,$contrasenia,$correo,$puesto,$licencia,$sexo,$telefono,$tipo,$accesso){
         $data = array(
             'nombre' => $nombre,

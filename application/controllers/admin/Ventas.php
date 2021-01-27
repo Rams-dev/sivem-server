@@ -239,8 +239,28 @@ class Ventas extends CI_Controller {
         }
     }
 
-    public function generarOrdenDeCompra(){
-        $html=$this->load->view('admin/ventas/ordenDeCompra');
+    public function detallesDeVenta($id){
+        
+        $espectaculares = $this->VentasModel->obtenerVentasEspectaculares($id);
+        $vallas_fijas = $this->VentasModel->obtenerVentasVallas_fijas($id);
+        $vallas_moviles = $this->VentasModel->obtenerVentasVallas_moviles($id);
+        $medios = array_merge($espectaculares,$vallas_fijas,$vallas_moviles);
+        $ventas = $this->VentasModel->obtenerVentaPorId($id); 
+
+        for($v = 0; $v <  count($ventas); $v++){
+            for($m = 0; $m <  count($medios); $m++){
+                if($medios[$m]["id_medio"] == $ventas[$v]["id_medio"] ){
+                    $ventas[$v]["id_medio"] = $medios[$m];
+                }
+            }
+        }
+        return $ventas;
+
+    }
+
+    public function generarOrdenDeCompra($id){
+        $data["ventas"] = $this->detallesDeVenta($id);
+        $html=$this->load->view('admin/ventas/ordenDeCompra', $data);
         //$this->load->view('admin/catalogos/catalogoespectacularesPDF',$data);
 		//echo $html;
 		$this->Models->generateOrdenCompra($html);

@@ -178,7 +178,7 @@
         <input type="hidden" name="monto" id="monto">
 
 
-        <div class="row justify-content-end mt-5">
+        <div class="row justify-content-end my-5">
             <button type="button" id="add" class="btn btn-primary mx-4">Agregar</button>
             <button type="submit" class="btn btn-dark">Guardar</button>
         </div>

@@ -38,6 +38,10 @@
     .datos{
         width: 100%;
     }
+
+    .dato>p{
+        padding-left: 10px;
+    }
     .border-botom{
         font-size: 13px;
         border-bottom: solid 2px #000;
@@ -100,27 +104,47 @@
         opacity:.3
     }
 
-    .foot{
+    /* .foot>p{
         position: absolute;
         bottom: 75%;
-    }
+    } */
 
     .center{
+        width: 150px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #000;
+        position: absolute;
         text-align: center;
+        bottom: 1%;
+        left: 40%;
 
     }
 
     .start{
-        text-align: start;        
+        width: 150px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #000;
+        position: absolute;
+        text-align: center;
+        left: 10%;
+        bottom: 1%;
     }
 
     .end {
-        text-align: end;
+        width: 150px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #000;
+        text-align: center;
+        position: absolute;
+        right: 10%;
+        bottom: 1%;
     }
     
     </style>
 </head>
 <body>
+<?php var_dump($ventas)?>
+<?php foreach($ventas as $venta){}?>
 <img src="<?= BASEPATH.'../assets/images/bandalateral.png'?>" class="bandalateral" alt="">
 <div class="encabezados">
     <div class="encabezado1">
@@ -128,15 +152,15 @@
             <p>impresión en HD y DF de lona | vinil | Tela | Microperforado | Laser | Offset | Serigrafia | Recorte de vinil | Rotulacion vehicular</p>
         </div>
         <div class="datos">
-            <p class="border-bottom">Cliente:</p>
+            <p class="border-bottom">Cliente: <?= $venta["nombre"]?></p>
             <p class="border-bottom">Telefono:</p>
-            <p class="caja">Fecha:</p>
+            <p class="caja">Fecha: <?= $venta["fecha_venta"]?></p>
             <p class="caja">Impresor:</p>
-            <p class="cajav">Vendedor:</p>
+            <p class="cajav">Vendedor: <?= $venta["nombre_vendedor"]?></p>
         </div>
     </div>
     <div class="encabezado2">
-        <div class="folio"><p>N:</p> </div>
+        <div class="folio"><p>N: <?= $venta["id"]?></p></div>
         <div class="informacion">
             <p>La Soledad No. 115</p>
         </div>
@@ -147,38 +171,33 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+                <th>#</th>
+                <th>Medidas</th>
+                <th colspan="3">Descripción</th>
+                <th>Precio</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            </tr>
-            <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            </tr>
-            <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-            </tr>
+        <?php 
+            $i = 1;
+            foreach($ventas as $dventa):
+        ?>
+        <tr>
+            <td><?= $i?></td>
+            <td><?= $dventa["alto"]. " x " . $dventa["ancho"] ?></td>
+            <td colspan="3"><?=$dventa["calle"]." ".$dventa["localidad"]?></td>
+        </tr>
+        <?php 
+            echo $i++;
+            endforeach 
+        ?>
+            
         </tbody>
     </table>
 
-    <div class="foot">
+</div> 
         <p class="start">Autorizado</p>
         <p class="center">Entregó</p>
         <p class="end">Recibió</p>
-    </div>
-</div> 
 </body>
 </html>

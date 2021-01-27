@@ -3,15 +3,34 @@
 
 <div id="mensajesDemediosPorTerminarContrato" class="col-md-12"></div>
 
-
+<!-- 
   <div class="mx-auto">
    <div class="col-lg-12 proximamente">
      <img src="<?= base_url("assets/images/proximamente.png")?>" alt="">
-   </div>
- </div> 
+   </div> 
+ </div> -->
+<div class="row justify-content-center">
+  <div class="col-md-3 col-lg-2">
+    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio">
+  </div>
+  <div class="col-md-3 col-lg-2">
+    <input type="date" class="form-control" id="fechaTermino" name="fechaTermino">
+  </div>
 
+  <div class="col-md-3 col-lg-3">
+    <select name="vendedor" id="vendedor" class="form-control">
+    <option value="">Selecciona un vendedor</option>
+      <?php foreach($vendedores as $vendedor):?>
+        <option value="<?= $vendedor["id"]?>"><?= $vendedor["nombre"]. " " .$vendedor["apellidos"]?></option>
+      <?php endforeach?>
+    </select>
+  </div>
+  <div class="col-md-3 col-lg-2">
+    <button class="btm btn-warning btn-block" id="btnLimpiarFiltros">Limpiar filtros</button>
+  </div>
+</div>
 
-<!-- <div class="ventasPorMes"></div> -->
+<div class="ventasPorMes"></div>
 
 
 <!-- Modal Medios Por vencer contrato -->

@@ -3,12 +3,22 @@ p2  = p.lastIndexOf("admin")
 let path = p.slice(0, p2)
 console.log(path);
 const divMensaje = document.querySelector("#mensajesDemediosPorTerminarContrato");
+const fechaInicio = document.querySelector("#fechaInicio");
+const fechaTermino = document.querySelector("#fechaTermino");
+const vendedor = document.querySelector("#vendedor");
+const btnLimpiarfiltros = document.querySelector("#btnLimpiarFiltros");
+let fecha_Inicio;
+let fecha_Termino;
+let vendedor_Id;
+
 
 (function obtenerMediosPorTerminarContrato(){
     $.get(path+"admin/dashboard/obtenerMediosQueVanATerminarContrato", function(response){
-        let res = JSON.parse(response);
-        enviarNotificacion(res.total);
-        mostrarMediosPorTerminarContrato(res.medios)
+        if(response != ""){
+            let res = JSON.parse(response);
+            enviarNotificacion(res.total);
+            mostrarMediosPorTerminarContrato(res.medios)
+        }
     })
 
     
@@ -75,3 +85,97 @@ function mostrarMediosPorTerminarContrato(medios){
   
 
 }
+
+btnLimpiarfiltros.addEventListener("click", function(e){
+    fechaInicio.value = null;
+    fechaTermino.value = null;
+    vendedor.value = "";
+    quitarErrorAfechas();
+})
+
+fechaInicio.addEventListener("change", function(e){
+    e.preventDefault()
+    fechaInicio.classList.remove("is-invalid")
+    fecha_Inicio = e.target.value;
+    obtenerVentasPorfecha()
+})
+
+fechaTermino.addEventListener("change", function(e){
+    e.preventDefault()
+    fechaTermino.classList.remove("is-invalid")
+
+    fecha_Termino = e.target.value;
+
+    obtenerVentasPorfecha()
+
+})
+
+vendedor.addEventListener("change", function(e){
+    e.preventDefault()
+    vendedor_Id = e.target.value;
+    obtenerVentasPorfecha()
+})
+
+
+function obtenerVentasPorfecha(){
+    if(validarFechas()){
+        arrayData = {
+            "vendedorId": vendedor_Id,
+            "fechaInicio": fecha_Inicio,
+            "fechaTermino": fecha_Termino
+        }
+        $.ajax({
+            url: path+"admin/dashboard/obtenerVentasPorFecha",
+            type: "post",
+            data: arrayData,
+        })
+        .done(function(response){
+            let res = JSON.parse(response);
+            printData(res)
+        })
+        .fail(function(error){
+            console.log(error)
+        })
+        .always(function(){
+            console.log("haciendo algo")
+        })
+
+    }
+    
+} 
+
+function validarFechas(){
+    if(fecha_Inicio > fecha_Termino){
+        alertify.error("selecciona una fecha válida");
+        agregarErrorAfechas()
+        return 0;
+    }
+    if(fecha_Inicio == null || fecha_Termino == null){
+        return true;
+    }
+
+    if(fecha_Inicio != null && fecha_Termino == null || fecha_Termino != null && fecha_Inicio == null){
+        return false
+    }
+    quitarErrorAfechas()
+    return true;
+}
+
+
+function agregarErrorAfechas(){
+    fechaInicio.classList.add("is-invalid")
+    fechaTermino.classList.add("is-invalid")
+}
+
+function quitarErrorAfechas(){
+    fechaInicio.classList.remove("is-invalid")
+    fechaTermino.classList.remove("is-invalid")
+
+}
+
+function printData(res){
+    console.log(res);
+
+}
+
+

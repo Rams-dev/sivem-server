@@ -78,9 +78,9 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'publihom_root',
-	'password' => '&=FxE*j.x.Hp',
-	'database' => 'publihom_sivem',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'sivem',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -96,5 +96,4 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-
 

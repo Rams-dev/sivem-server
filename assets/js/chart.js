@@ -1,16 +1,6 @@
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
-function obtenerDatos(){
-  $.get("dashboard/obtenerVentasPorMes", function(response){
-    let res = JSON.parse(response);
-    console.log(res);
-  })
-
-}
-
-obtenerDatos();
-
 function drawChart() {
     var data = google.visualization.arrayToDataTable([
       ['mes', 'Vallas fijas', 'Vallas Moviles' , 'espectaculares'],

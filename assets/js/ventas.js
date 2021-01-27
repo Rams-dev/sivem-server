@@ -46,12 +46,15 @@ $("#descuento").change(function(){
         }
 })
 
-descuentoCantidadvendedor.addEventListener("keyup", function(e){
-        e.preventDefault();
-        if(esMayorA20(e.target.value)){
-                this.value = 20
-        }
-})
+if(descuentoCantidadvendedor != undefined){
+        descuentoCantidadvendedor.addEventListener("keyup", function(e){
+                e.preventDefault();
+                if(esMayorA20(e.target.value)){
+                        this.value = 20
+                }
+        })
+
+}
 
 function esMayorA20(number){
         if(number>20){

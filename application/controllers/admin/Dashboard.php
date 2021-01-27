@@ -10,6 +10,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model('EspectacularesModel');
 		$this->load->model('Vallas_fijasModel');
 		$this->load->model('Vallas_movilesModel');
+		$this->load->model('EmpleadosModel');
 		// $this->load->model('DashboardModel');
 		
 
@@ -23,7 +24,8 @@ class Dashboard extends CI_Controller {
 			$dentroDeUnMes = mktime(0,0,0, date("m")+1, date("d"), date("Y"));
 			$UnMes = date('Y/m/d', $dentroDeUnMes);
 			$hoy = date('Y/m/d');
-	
+			
+			$data["vendedores"] = $this->EmpleadosModel->obtenerEmpleadosVendedores();
 			//obtiene los medios que estan apartados en una determinada fecha
 			$apartados = $this->VentasModel->obtenerVenta_mediosPorFechaInicio($hoy);
 			if(count($apartados)>0){
@@ -93,7 +95,8 @@ class Dashboard extends CI_Controller {
 			*/
 			// $mediosDisponibles = $this->MediosModel->obtenerMediosGeneralesDisponiblesQueEstanEnVenta($hoy);
 			//  if(count($mediosDisponibles)>0){
-			//  	for ($MD=0; $MD < count($mediosDisponibles); $MD++) { 
+	
+				//  	for ($MD=0; $MD < count($mediosDisponibles); $MD++) { 
 			// 		//cambia el estatus del medio a APARTADO
 			//  		$this->MediosModel->cambiarStatusMedio($mediosDisponibles[$MD]["id_medio"]);
 			//  	}
@@ -112,7 +115,7 @@ class Dashboard extends CI_Controller {
 
 			$this->load->view('admin/templates/__head');
 			$this->load->view('admin/templates/__nav');
-			$this->load->view('admin/dashboard');
+			$this->load->view('admin/dashboard',$data);
 			$this->load->view('admin/templates/__footer');
 		}else{
 			redirect('login');
@@ -131,9 +134,22 @@ class Dashboard extends CI_Controller {
 		}
 	}
 
-	public function obtenerVentasPorMes(){
-		$VM = $this->Vallas_movilesModel->obtenerVentas();
-		echo json_encode($VM);
+	public function obtenerVentasPorFecha(){
+		if($this->session->userdata("is_logged")){
+			$vendedor = $this->input->post("vendedorId");
+			$fecha1 = $this->input->post("fechaInicio");
+			$fecha2 = $this->input->post("fechaTermino");
+			// $fm = $this->input->post();
+			// echo json_encode($fm);
+			// exit;
+	
+			$VM = $this->VentasModel->obtenerVentas();
+				echo json_encode($VM);
+			
+		}else{
+			redirect("login");
+		}
+
 		
 	}
 

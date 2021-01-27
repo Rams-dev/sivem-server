@@ -83,10 +83,12 @@ class VentasModel extends CI_model
 		$this->db->select("*");
 		$this->db->join("venta_medios","venta_medios.id_venta = ventas.id_venta");
 		$this->db->join("medios","venta_medios.id_medio = medios.id");
-		$this->db->select("clientes.nombre as razon_social, rfc, domicilio, colonia, poblacion, nombre_encargado, puesto, telefono, correo ");
+		$this->db->select("clientes.nombre as razon_social, rfc, domicilio, colonia, poblacion, nombre_encargado, clientes.puesto, clientes.telefono, clientes.correo ");
 		$this->db->join("clientes","clientes.id = ventas.id_comprador");
 		$this->db->select("estados.nombre as nombre_estado");
 		$this->db->join("estados","estados.id = clientes.id_estado");
+		$this->db->select("usuarios.nombre as nombre_vendedor");
+		$this->db->join("usuarios","ventas.id_vendedor = usuarios.id");
 		$this->db->where("ventas.id_venta",$id);
 		// $this->db->group_by("ventas.id_venta");
 		$sql = $this->db->get("ventas");
